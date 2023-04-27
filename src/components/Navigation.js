@@ -17,6 +17,7 @@ function Navigation() {
                 <li>
                     <Link to="/search">Search Movie</Link>
                 </li>
+                
             </ul>
         </nav>
     )

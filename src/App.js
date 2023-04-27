@@ -6,6 +6,8 @@ import HomePage from './page/HomePage';
 import NowPlayingPage from './page/NowPlayingPage';
 import UpComingPage from './page/UpcomingPage';
 import SearchPage from './page/SearchPage';
+import DetailPage from './page/DetailPage';
+import DetailPageWrapper from './page/DetailPage';
 
 function App() {
   return (
@@ -21,10 +23,12 @@ function App() {
           <Route path="/now-playing" element={<NowPlayingPage />} />
           <Route path="/upcoming" element={<UpComingPage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/movies/:id" element={<DetailPageWrapper/>}/>
         </Routes>
       </main>
     </>
   );
 }
+
 
 export default App;
