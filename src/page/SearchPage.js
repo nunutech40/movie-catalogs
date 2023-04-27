@@ -2,7 +2,20 @@ import React from "react";
 import SearchBar from '../components/SearchBar';
 import MovieList from '../components/MovieList';
 import { searchMovies } from '../utils/data';
+import { useSearchParams } from 'react-router-dom';
 
+function SearchPageWrapper() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const title = searchParams.get('title');
+
+  function changeSearchParams(keyword) {
+    setSearchParams({ title: keyword })
+  }
+
+  return <SearchPage onSearch={changeSearchParams} activeKeyword={title} />
+
+}
 
 class SearchPage extends React.Component {
 
@@ -10,7 +23,7 @@ class SearchPage extends React.Component {
     super(props);
 
     this.state = {
-      foundedMovies: []
+      foundedMovies: props.activeKeyword ? searchMovies(props.activeKeyword) : []
     };
 
     this.onSearch = this.onSearch.bind(this);
@@ -22,18 +35,20 @@ class SearchPage extends React.Component {
         foundedMovies: searchMovies(keyword)
       };
     });
+
+    this.props.onSearch(keyword);
   }
 
   render() {
     return (
       <section>
         <h2>Search Movie</h2>
-        <SearchBar search={this.onSearch} />
+        <SearchBar search={this.onSearch} defaultKeyoword={this.props.activeKeyword} />
         <MovieList movies={this.state.foundedMovies} />
       </section>
     );
   }
-    
+
 }
 
-export default SearchPage;
+export default SearchPageWrapper;

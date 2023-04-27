@@ -6,7 +6,6 @@ import HomePage from './page/HomePage';
 import NowPlayingPage from './page/NowPlayingPage';
 import UpComingPage from './page/UpcomingPage';
 import SearchPage from './page/SearchPage';
-import DetailPage from './page/DetailPage';
 import DetailPageWrapper from './page/DetailPage';
 
 function App() {
